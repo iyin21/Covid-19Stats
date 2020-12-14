@@ -2,7 +2,6 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import _ from "lodash";
 import {GetCovidStat} from "../actions/covidActions";
-import ../
 
 const CovidStat = () => {
 	const dispatch = useDispatch();
@@ -30,18 +29,26 @@ const CovidStat = () => {
 	// 	}
 	const ShowData = () =>{
 		if(!_.isEmpty(covidStat.data)) {
-			return covidStat.data.states.map(el => {
-				return( 
-					<div className="container">
-						<h3>State-{el.state}</h3>
-						<p>Confirmed cases-{el.confirmedCases}</p>
-						<p>Cases on admission-{el.casesOnAdmission}</p>
-						<p>Discharged-{el.discharged}</p>
-						<p>Death-{el.death}</p>
-					</div>
-				)	   
-			})
+			return covidStat.data.filter(el => {
+				return(
+					<h3>State-{el.death}</h3>
+				)	
+			}) 
 		}
+	// const ShowData = () =>{
+	// 	if(!_.isEmpty(covidStat.data)) {
+	// 		return covidStat.data.states.map(el => {
+	// 			return( 
+	// 				<div className="container">
+	// 					<h3>State-{el.state}</h3>
+	// 					<p>Confirmed cases-{el.confirmedCases}</p>
+	// 					<p>Cases on admission-{el.casesOnAdmission}</p>
+	// 					<p>Discharged-{el.discharged}</p>
+	// 					<p>Death-{el.death}</p>
+	// 				</div>
+	// 			)	   
+	// 		})
+	// 	}
 		
 		if(covidStat.loading) {
 			return <p>Loading...</p>
