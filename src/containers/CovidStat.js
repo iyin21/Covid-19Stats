@@ -27,28 +27,36 @@ const CovidStat = () => {
 	// 			</> 
 	// 		)	 
 	// 	}
+	
 	const ShowData = () =>{
 		if(!_.isEmpty(covidStat.data)) {
-			return covidStat.data.filter(el => {
-				return(
-					<h3>State-{el.death}</h3>
-				)	
-			}) 
+			// return(
+			// 	<div>
+			// 		<h2>{covidStat.data.death}</h2>
+			// 	</div>
+			// 	)
+			return(
+				<div className="container">
+					<p>Total samples tested:{covidStat.data.totalSamplesTested}</p>
+					<p>Total confirmed cases{covidStat.data.totalConfirmedCases}</p>
+					<p>Total active cases:{covidStat.data.totalActiveCases}</p>
+					<p>Total number of discharged{covidStat.data.dischaged}</p>
+					<p>Total number of deaths-{covidStat.data.death}</p>
+					<h2> Statistics based on each state</h2>
+					{covidStat.data.states.map(el => {
+					return( 
+						<div>
+							<h4>{el.state} State</h4>
+							<p>Confirmed cases-{el.confirmedCases}</p>
+							<p>Cases on admission-{el.casesOnAdmission}</p>
+							<p>Discharged-{el.discharged}</p>
+							<p>Death-{el.death}</p>
+						</div>
+					)	   
+				})}
+			</div> 
+			)
 		}
-	// const ShowData = () =>{
-	// 	if(!_.isEmpty(covidStat.data)) {
-	// 		return covidStat.data.states.map(el => {
-	// 			return( 
-	// 				<div className="container">
-	// 					<h3>State-{el.state}</h3>
-	// 					<p>Confirmed cases-{el.confirmedCases}</p>
-	// 					<p>Cases on admission-{el.casesOnAdmission}</p>
-	// 					<p>Discharged-{el.discharged}</p>
-	// 					<p>Death-{el.death}</p>
-	// 				</div>
-	// 			)	   
-	// 		})
-	// 	}
 		
 		if(covidStat.loading) {
 			return <p>Loading...</p>
